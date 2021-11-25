@@ -98,14 +98,12 @@ export function useLoadScript({
       injectScript({ id, url, nonce })
         .then(setLoadedIfMounted)
         .catch(function handleInjectError(err) {
-          if (isMounted.current) {
-            setLoadError(err)
-          }
+          setLoadError(err)
           console.warn(`
-        There has been an Error with loading Google Maps API script, please check that you provided correct google API key (${googleMapsApiKey ||
-          '-'}) or Client ID (${googleMapsClientId || '-'})
-        Otherwise it is a Network issue.
-      `)
+            There has been an Error with loading Google Maps API script, please check that you provided correct google API key (${googleMapsApiKey ||
+              '-'}) or Client ID (${googleMapsClientId || '-'})
+            Otherwise it is a Network issue.
+          `)
           console.error(err)
         })
     },
